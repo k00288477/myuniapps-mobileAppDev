@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "217268666583",
+    "firebase_url": "https://myuniapps-clubs-and-societies-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "myuniapps-clubs-and-societies",
+    "storage_bucket": "myuniapps-clubs-and-societies.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217268666583:android:be6749869f624adbaff092",
+        "android_client_info": {
+          "package_name": "com.example.myuniapps_cs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX7eZLXHcBbMpHbBDKB-236jytcKXyeaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
