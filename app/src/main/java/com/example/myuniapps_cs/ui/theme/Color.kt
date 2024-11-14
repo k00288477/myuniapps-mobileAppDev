@@ -1,7 +1,7 @@
 package com.example.myuniapps_cs.ui.theme
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF775A12)
+val primaryLight = Color(0xFFDFB969)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFDFB969)
 val onPrimaryContainerLight = Color(0xFF3F2D00)
