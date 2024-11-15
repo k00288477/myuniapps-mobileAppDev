@@ -44,7 +44,7 @@ fun HomeScreen(navController: NavHostController){
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .fillMaxWidth()
-                .padding(top = 50.dp)
+                .padding(top = 30.dp)
         )
         Box(
             modifier = Modifier
@@ -61,15 +61,15 @@ fun HomeScreen(navController: NavHostController){
                 modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp)
                     .fillMaxWidth()
                     .background(color = Color.Black.copy(alpha = 0.50f))
-                    .offset(y = 16.dp)
             )
         }
 
         Column (
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(16.dp, 450.dp, 16.dp, 16.dp)
+                .padding(16.dp, 480.dp, 16.dp, 16.dp)
         ) {
+
             // Log In section
             if (isUserLoggedIn) {
                 LoggedIn()

@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myuniapps_cs.ui.theme.MyUniAppsCSTheme
+
 
 
 /// Define all buttons here
@@ -59,7 +59,7 @@ fun BtnSecondary(text: String, modifier: Modifier = Modifier, onClick: ()-> Unit
     ) {
         Text(
             text = text,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = MaterialTheme.colorScheme.primary,
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
             textAlign = TextAlign.Center
