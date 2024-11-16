@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.myuniapps_cs.ui.screens.home.HomeScreen
+import com.example.myuniapps_cs.ui.screens.home.RegisterScreen
 import com.example.myuniapps_cs.ui.screens.profile.ProfileScreen
 
 
@@ -14,6 +15,8 @@ fun NavigationGraph( navController: NavHostController ) {
     NavHost(navController = navController, startDestination = "home") {
         composable("home") { HomeScreen(navController) }
         composable("profile") { ProfileScreen(navController) }
+        composable("register") { RegisterScreen(navController) }
+
 
 
     }
