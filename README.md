@@ -1,5 +1,5 @@
 # MyUniApps - Clubs & Societies
-Mobile Applications Development year 3
+## Mobile Applications Development year 3
 
 MyUni – Clubs & Societies is a one stop shop for information and updates to events organised and ran by clubs and societies from the Technological University of the Shannon: Midwest. 
 Students can view a list of clubs and societies within TUS that they are eligible to join. Access detailed information related to each club including a chairperson, the clubs email address, the meeting time for their next planned activity and a google maps location-based service so they can find their way. 
