@@ -16,4 +16,8 @@ Club admin accounts can create new events that will be displayed to users. The d
 
 ### See report word doc for more extensive information and design.pdf for figma frames
 
+https://github.com/k00288477/myuniapps-mobileAppDev/settings
+
+[Github] https://github.com/k00288477/myuniapps-mobileAppDev
+
 
