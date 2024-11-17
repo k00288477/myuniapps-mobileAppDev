@@ -14,7 +14,7 @@ Club admin accounts can create new events that will be displayed to users. The d
 - Designs developed in Figma
 - Uses Atomic Design Principals
 
-###See report word doc for more extensive information
-###See design.pdf for figma frames
+### See report word doc for more extensive information
+### See design.pdf for figma frames
 
 
