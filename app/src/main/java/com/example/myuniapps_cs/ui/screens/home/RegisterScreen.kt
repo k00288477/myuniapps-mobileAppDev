@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,13 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.myuniapps_cs.ui.auth.loginUser
-import com.example.myuniapps_cs.ui.components.molecules.BtnPrimary
-import com.example.myuniapps_cs.ui.components.molecules.BtnSecondary
-import com.example.myuniapps_cs.ui.components.molecules.InputField
+import com.example.myuniapps_cs.ui.components.BtnPrimary
+import com.example.myuniapps_cs.ui.components.BtnSecondary
+import com.example.myuniapps_cs.ui.components.InputField
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import java.lang.Error
 
 @Composable
 fun RegisterScreen(navController: NavHostController) {
@@ -108,12 +105,19 @@ fun RegisterScreen(navController: NavHostController) {
             // Submit Button
             BtnPrimary(
                 onClick = {
+                    val emailRegex = Regex("^k\\d{8}@student\\.tus\\.ie$")
                     isLoading = true
+
+                    if(emailRegex.matches(email)){
+                        errorMessage = "You must use a Valid TUS Student email address"
+                        isLoading = false
+                        return@BtnPrimary
+                    }
                     // validation
                     if (password != confirmPassword) {
                         errorMessage = "Passwords do not match"
                         isLoading = false
-                        return@BtnPrimary;
+                        return@BtnPrimary
                     } else {
                         // Create user with email and password in Firebase Authentication
                         Firebase.auth.createUserWithEmailAndPassword(email, password)

@@ -22,9 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.myuniapps_cs.ui.auth.loginUser
-import com.example.myuniapps_cs.ui.components.molecules.BtnPrimary
-import com.example.myuniapps_cs.ui.components.molecules.BtnSecondary
-import com.example.myuniapps_cs.ui.components.molecules.InputField
+import com.example.myuniapps_cs.ui.components.BtnPrimary
+import com.example.myuniapps_cs.ui.components.BtnSecondary
+import com.example.myuniapps_cs.ui.components.InputField
 
 
 @Composable

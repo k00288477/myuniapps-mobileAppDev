@@ -1,4 +1,4 @@
-package com.example.myuniapps_cs.ui.components.molecules
+package com.example.myuniapps_cs.ui.components
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

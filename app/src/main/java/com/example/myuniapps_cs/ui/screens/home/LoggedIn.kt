@@ -1,7 +1,6 @@
 package com.example.myuniapps_cs.ui.screens.home
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,8 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.myuniapps_cs.ui.components.molecules.BtnPrimary
-import com.example.myuniapps_cs.ui.components.molecules.BtnSecondary
+import com.example.myuniapps_cs.ui.components.BtnPrimary
+import com.example.myuniapps_cs.ui.components.BtnSecondary
 
 @Composable
 fun LoggedIn(){

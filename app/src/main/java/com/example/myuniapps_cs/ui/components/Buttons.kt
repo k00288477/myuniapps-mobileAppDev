@@ -1,6 +1,5 @@
-package com.example.myuniapps_cs.ui.components.molecules
+package com.example.myuniapps_cs.ui.components
 
-import android.content.res.Resources
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
