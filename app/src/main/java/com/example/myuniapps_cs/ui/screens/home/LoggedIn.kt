@@ -28,13 +28,13 @@ fun LoggedIn(navController: NavController){
     ){
         BtnPrimary(
             text = "View All Clubs",
-            onClick = { /* Navigate to Clubs Screen */ },
+            onClick = { navController.navigate("clubs") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp).fillMaxWidth())
         BtnSecondary(
             text = "View Favourites",
-            onClick = { navController to "profile" },
+            onClick = { navController.navigate("profile") },
             modifier = Modifier.fillMaxWidth()
         )
 

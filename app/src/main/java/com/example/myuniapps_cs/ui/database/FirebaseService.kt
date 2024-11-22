@@ -11,7 +11,7 @@ class FirebaseService {
 
     // Reference db entities
     private val usersRef: DatabaseReference = database.getReference("users")
-    private val clubsRef: DatabaseReference = database.getReference("clubs")
+    private val clubsRef: DatabaseReference = database.getReference("Clubs")
     private val eventsRef: DatabaseReference = database.getReference("clubEvents")
 
     // Auth instance

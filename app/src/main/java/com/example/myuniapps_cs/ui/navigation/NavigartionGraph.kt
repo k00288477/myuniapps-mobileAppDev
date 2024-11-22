@@ -21,7 +21,5 @@ fun NavigationGraph( navController: NavHostController ) {
         composable("editProfile") { EditDetails(navController) }
         composable("clubs") { ClubsScreen(navController) }
 
-
-
     }
 }
