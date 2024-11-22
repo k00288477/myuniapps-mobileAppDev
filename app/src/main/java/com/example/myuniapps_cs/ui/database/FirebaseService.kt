@@ -7,7 +7,6 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.tasks.await
 
 class FirebaseService {
-
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     // Reference db entities
@@ -32,13 +31,55 @@ class FirebaseService {
     }
 
     // Add user to the database
-    suspend fun addUser(userId: String, displayName: String, email: String, courseTitle: String){
-        val user = User(userId, displayName, email, courseTitle)
+    suspend fun addUser(email: String){
+        val userId = auth.currentUser?.uid
         try{
-            usersRef.child(userId).setValue(user).await()
-            Log.d("FirebaseService", "User added successfully")
+            if (userId != null) {
+                val user = User(userId, displayName = "Edit to add name", email, courseTitle = "Edit to add title")
+
+                usersRef.child(userId).setValue(user).await()
+                Log.d("FirebaseService", "User added successfully")
+            }
+
         } catch (e: Exception) {
             Log.d("FirebaseService", "Error adding user: ${e.message}")
+        }
+    }
+
+    // Update user details
+    suspend fun updateUser(user:User){
+        val userId = auth.currentUser?.uid
+        try {
+            if (userId != null) {
+                usersRef.child(userId).setValue(user).await()
+                Log.d("FirebaseService", "User: ${user.email}, details updated successfully")
+            }
+        } catch (e: Exception){
+            Log.d("FirebaseService", "Error updating user: ${user.email}, ${e.message}")
+        }
+    }
+
+    // get all clubs
+    suspend fun getAllClubs(): List<Club>? {
+        return try {
+            val snapshot = clubsRef.get().await()
+            val clubsMap = snapshot.value as? Map<*, *> ?: return null
+
+            clubsMap.mapNotNull { entry ->
+                val club = (entry.value as? Map<*, *>)?.let {
+                    Club(
+                        clubId = it["clubId"] as? String ?: "",
+                        clubName = it["clubName"] as? String ?: "",
+                        description = it["description"] as? String ?: "",
+                        thumbnail = it["thumbnail"] as? String ?: "",
+                        adminId = it["adminId"] as? String ?: ""
+                    )
+                }
+                club
+            }
+        } catch (e: Exception) {
+            Log.e("FirebaseService", "Failed to fetch clubs: ${e.message}")
+            null
         }
     }
 
@@ -47,9 +88,9 @@ class FirebaseService {
 
 data class User(
     val userId: String = "",
-    val displayName: String = "",
+    var displayName: String = "",
     val email: String = "",
-    val courseTitle: String = ""
+    var courseTitle: String = ""
 )
 
 data class Club(

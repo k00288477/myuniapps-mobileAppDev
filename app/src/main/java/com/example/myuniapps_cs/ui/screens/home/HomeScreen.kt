@@ -64,7 +64,7 @@ fun HomeScreen(navController: NavHostController){
 
             // Log In section
             if (isUserLoggedIn) {
-                LoggedIn()
+                LoggedIn(navController)
             } else {
                     LoginScreen(onLoginSuccess = {
                         isUserLoggedIn = true;

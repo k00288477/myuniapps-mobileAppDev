@@ -11,11 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.myuniapps_cs.ui.components.BtnPrimary
 import com.example.myuniapps_cs.ui.components.BtnSecondary
 
 @Composable
-fun LoggedIn(){
+fun LoggedIn(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -33,7 +34,7 @@ fun LoggedIn(){
         Spacer(modifier = Modifier.height(16.dp).fillMaxWidth())
         BtnSecondary(
             text = "View Favourites",
-            onClick = { /* Navigate to Profile Favourites */ },
+            onClick = { navController to "profile" },
             modifier = Modifier.fillMaxWidth()
         )
 
