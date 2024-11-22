@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,8 +25,10 @@ import androidx.navigation.NavHostController
 import com.example.myuniapps_cs.ui.components.BtnPrimary
 import com.example.myuniapps_cs.ui.components.BtnSecondary
 import com.example.myuniapps_cs.ui.components.InputField
+import com.example.myuniapps_cs.ui.database.FirebaseService
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 
 @Composable
 fun RegisterScreen(navController: NavHostController) {
@@ -33,8 +36,9 @@ fun RegisterScreen(navController: NavHostController) {
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    val firebaseService = remember { FirebaseService() }
     var isLoading by remember { mutableStateOf(false) }
-
+    val coroutine = rememberCoroutineScope()
     Box(Modifier.fillMaxSize()
         .padding(16.dp, 100.dp)) {
         Column(
@@ -108,7 +112,7 @@ fun RegisterScreen(navController: NavHostController) {
                     val emailRegex = Regex("^k\\d{8}@student\\.tus\\.ie$")
                     isLoading = true
 
-                    if(emailRegex.matches(email)){
+                    if(!emailRegex.matches(email)){
                         errorMessage = "You must use a Valid TUS Student email address"
                         isLoading = false
                         return@BtnPrimary
@@ -124,6 +128,10 @@ fun RegisterScreen(navController: NavHostController) {
                             .addOnCompleteListener { task ->
                                 isLoading = false
                                 if (task.isSuccessful) {
+                                    coroutine.launch {
+                                        // Add user to the Real Time Database
+                                        firebaseService.addUser(email)
+                                    }
                                     // Display success message
                                     errorMessage = "Registration Successful!"
                                     // navigate home
@@ -133,6 +141,7 @@ fun RegisterScreen(navController: NavHostController) {
                                         task.exception?.localizedMessage ?: "Registration failed"
                                 }
                             }
+
                     }
                 },
                 text = "Create Account",
