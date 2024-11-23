@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,41 +32,46 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myuniapps_cs.R
-import com.example.myuniapps_cs.ui.components.BtnTertiary
 import com.example.myuniapps_cs.ui.components.LoadingWheel
 import com.example.myuniapps_cs.ui.database.Club
 import com.example.myuniapps_cs.ui.database.FirebaseService
+import com.google.maps.android.compose.GoogleMap
 import kotlinx.coroutines.launch
 
+
 @Composable
-fun ClubsScreen(navController: NavController){
+fun ClubDrillDown(navController: NavController, clubId: String?) {
     val firebaseService = FirebaseService()
     val coroutine = rememberCoroutineScope()
-    var clubs by remember { mutableStateOf<List<Club>?>(null) }
     var isLoading by remember { mutableStateOf(true) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    var club by remember { mutableStateOf<Club?>(null) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(clubId) {
         coroutine.launch {
-                // get all clubs
+            if(!clubId.isNullOrEmpty()) {
+                // get club
                 try {
-                    clubs = firebaseService.getAllClubs()
+                    club = firebaseService.getClub(clubId ?: "")
                     isLoading = false
                 } catch (e: Exception) {
-                    errorMessage = "Failed to load clubs: ${e.message}"
+                    errorMessage = "Failed to load club details: ${e.message}"
                     isLoading = false
                 }
+            } else {
+                errorMessage = "Club Id is invalid"
+                isLoading = false
             }
+        }
     }
 
-    Column (
+    Column(
         modifier = Modifier.padding(16.dp, 92.dp)
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,81 +83,79 @@ fun ClubsScreen(navController: NavController){
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                text = "Clubs & Societies",
+                text = "Club Details",
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 12.dp)
+                modifier = Modifier.padding(8.dp, 6.dp)
             )
 
-                if(!isLoading) {
-                    if (clubs != null) {
-                        for (club in clubs!!) {
-                            ClubDetails(club, navController)
-                            Spacer(modifier = Modifier.height(4.dp))
-                        }
-                    } else {
-                        Text(
-                            text = "Oops, theres nothing here :("
-                        )
-                    }
-                } else {
+            if(club != null) {
+                if (isLoading) {
+                    // Display Loading wheel during load
                     LoadingWheel()
+                } else {
+                    // Drill down details
+                    ClubDrillDownDetails(club!!)
                 }
+            } else {
+                Text("Error fetching club details...")
+            }
+
             }
         }
+
     }
 
 @Composable
-fun ClubDetails(club: Club, navController: NavController) {
+fun ClubDrillDownDetails(club: Club) {
     val context = LocalContext.current
     val imageName = club.thumbnail
     val imageResId = context.resources.getIdentifier(imageName, "drawable", context.packageName)
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 0.dp),
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
-    ){
-
-        if (imageResId != 0) {
+    Column {
+        Row(
+            modifier = Modifier
+                .padding(top = 0.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
             Image(
                 painter = painterResource(id = imageResId),
-                contentDescription = "Club thumbnail image",
+                contentDescription = "Club Profile Img",
                 modifier = Modifier
-                    .size(48.dp)
+                    .size(62.dp)
                     .clip(CircleShape),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Crop
             )
-        } else {
-            Image(
-                painter = painterResource(id = R.drawable.stock_img),
-                contentDescription = "Club thumbnail image",
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape),
-                contentScale = ContentScale.Fit
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = club.clubName,
+                color = Color.White,
+                fontSize = 24.sp
             )
         }
-        Spacer(modifier = Modifier.padding(4.dp))
+        HorizontalDivider(
+            modifier = Modifier.padding(vertical = 8.dp), // Add vertical spacing around the divider
+            thickness = 1.dp, // Set the thickness of the horizontal rule
+            color = MaterialTheme.colorScheme.surfaceVariant // Customize the color
+        )
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = club.clubName,
+            text = club.description,
             color = Color.White,
-            fontSize = 13.sp,
-            fontWeight = FontWeight.Normal
+            fontSize = 16.sp
         )
-        Spacer(modifier = Modifier.weight(1f))
-        BtnTertiary(
-            onClick = {
-                navController.navigate("clubDrillDown/${club.clubId}")
-            },
-            text = "Details",
-            modifier = Modifier
-                .width(104.dp)
-                .padding(8.dp, 4.dp)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Next Meeting: ",
+            color = Color.White,
+            fontSize = 16.sp
         )
+        GoogleMap()
 
     }
-
 }
+
+
+

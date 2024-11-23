@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.myuniapps_cs.ui.screens.clubs.ClubDrillDown
 import com.example.myuniapps_cs.ui.screens.clubs.ClubsScreen
 import com.example.myuniapps_cs.ui.screens.home.HomeScreen
 import com.example.myuniapps_cs.ui.screens.home.RegisterScreen
@@ -20,6 +21,10 @@ fun NavigationGraph( navController: NavHostController ) {
         composable("register") { RegisterScreen(navController) }
         composable("editProfile") { EditDetails(navController) }
         composable("clubs") { ClubsScreen(navController) }
+        composable("clubDrillDown/{clubId}") { backStackEntry ->
+            val clubId = backStackEntry.arguments?.getString("clubId")
+            ClubDrillDown(navController = navController, clubId = clubId)
+        }
 
     }
 }

@@ -72,6 +72,8 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.foundation.layout.android)
+    implementation(libs.foundation.layout.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -82,5 +84,12 @@ dependencies {
     // Firebase Bom
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
 
+    implementation(libs.maps.compose)
 
+    // Optionally, you can include the Compose utils library for Clustering,
+    // Street View metadata checks, etc.
+    implementation(libs.maps.compose.utils)
+
+    // Optionally, you can include the widgets library for ScaleBar, etc.
+    implementation(libs.maps.compose.widgets)
 }

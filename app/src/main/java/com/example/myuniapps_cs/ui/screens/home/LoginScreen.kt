@@ -25,6 +25,7 @@ import com.example.myuniapps_cs.ui.auth.loginUser
 import com.example.myuniapps_cs.ui.components.BtnPrimary
 import com.example.myuniapps_cs.ui.components.BtnSecondary
 import com.example.myuniapps_cs.ui.components.InputField
+import com.example.myuniapps_cs.ui.components.LoadingWheel
 
 
 @Composable
@@ -50,6 +51,10 @@ fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavHostController) {
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.primary
             )
+            Spacer(modifier = Modifier.height(8.dp))
+            if(isLoading){ // Display loading message while loading
+                LoadingWheel()
+            }
             Spacer(modifier = Modifier.height(8.dp))
 
             // Email Text Field

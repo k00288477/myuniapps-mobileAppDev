@@ -25,7 +25,7 @@ class FirebaseService {
             val snapshot = usersRef.child(userId).get().await()
             snapshot.getValue(User::class.java)
         } catch (e: Exception) {
-            Log.e("FirebaseService", "Filed to fetch user: ${e.message}")
+            Log.e("FirebaseService", "Failed to fetch user: ${e.message}")
             null
         }
     }
@@ -79,6 +79,16 @@ class FirebaseService {
             }
         } catch (e: Exception) {
             Log.e("FirebaseService", "Failed to fetch clubs: ${e.message}")
+            null
+        }
+    }
+
+    suspend fun getClub(clubId: String): Club? {
+        return try {
+            val snapshot = clubsRef.child(clubId).get().await()
+            snapshot.getValue(Club::class.java)
+        } catch (e: Exception) {
+            Log.e("FirebaseService", "Filed to fetch user: ${e.message}")
             null
         }
     }
