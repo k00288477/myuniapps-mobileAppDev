@@ -29,7 +29,6 @@ import com.google.firebase.auth.auth
 fun HomeScreen(navController: NavHostController){
     var isUserLoggedIn by remember { mutableStateOf(Firebase.auth.currentUser != null) }
 
-
     Box (modifier = Modifier.fillMaxSize()) {
         // Home Image and Text Blurb
         HomeImage(
@@ -66,12 +65,8 @@ fun HomeScreen(navController: NavHostController){
             if (isUserLoggedIn) {
                 LoggedIn(navController)
             } else {
-                    LoginScreen(onLoginSuccess = {
-                        isUserLoggedIn = true;
-                    },
-                        navController
-                        )
-
+                // Show Log in component
+                    LoginScreen(onLoginSuccess = { isUserLoggedIn = true; }, navController)
                 }
             }
         }
