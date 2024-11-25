@@ -39,7 +39,11 @@ import com.example.myuniapps_cs.R
 import com.example.myuniapps_cs.ui.components.LoadingWheel
 import com.example.myuniapps_cs.ui.database.Club
 import com.example.myuniapps_cs.ui.database.FirebaseService
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.maps.android.ktx.model.cameraPosition
 import kotlinx.coroutines.launch
 
 
@@ -111,7 +115,10 @@ fun ClubDrillDownDetails(club: Club) {
     val context = LocalContext.current
     val imageName = club.thumbnail
     val imageResId = context.resources.getIdentifier(imageName, "drawable", context.packageName)
-
+    val defaultLocation = LatLng(52.675400, -8.64860)
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(defaultLocation, 16f)
+    }
     Column {
         Row(
             modifier = Modifier
@@ -152,7 +159,10 @@ fun ClubDrillDownDetails(club: Club) {
             color = Color.White,
             fontSize = 16.sp
         )
-        GoogleMap()
+        GoogleMap(
+            modifier = Modifier.height(350.dp),
+            cameraPositionState = cameraPositionState
+        )
 
     }
 }
