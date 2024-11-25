@@ -66,20 +66,31 @@ fun BtnSecondary(text: String, modifier: Modifier = Modifier, onClick: ()-> Unit
     }
 }
 
-@Preview(showBackground = true)
+
 @Composable
-fun ButtonPreview() {
-//    BtnPrimary(
-//        text = "Log In",
-//        modifier = Modifier.padding(8.dp),
-//        onClick = {  }
-//    )
-    BtnSecondary(
-        text = "Create Account",
-        modifier = Modifier.padding(8.dp),
-        onClick = { }
-    )
+fun BtnTertiary(text: String, modifier: Modifier = Modifier, onClick: ()-> Unit){
+    Button(
+        onClick = onClick,
+        shape = RoundedCornerShape(15.dp),
+        colors = ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = MaterialTheme.colorScheme.primary,
+            disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+            disabledContentColor = MaterialTheme.colorScheme.onSecondary
+        ),
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
+        modifier = modifier
+    ) {
+        Text(
+            text = text,
+            color = MaterialTheme.colorScheme.primary,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Normal,
+            textAlign = TextAlign.Center
+        )
+    }
 }
+
 
 
 

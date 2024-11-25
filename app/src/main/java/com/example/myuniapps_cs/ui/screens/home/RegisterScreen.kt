@@ -25,6 +25,7 @@ import androidx.navigation.NavHostController
 import com.example.myuniapps_cs.ui.components.BtnPrimary
 import com.example.myuniapps_cs.ui.components.BtnSecondary
 import com.example.myuniapps_cs.ui.components.InputField
+import com.example.myuniapps_cs.ui.components.LoadingWheel
 import com.example.myuniapps_cs.ui.database.FirebaseService
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -39,6 +40,7 @@ fun RegisterScreen(navController: NavHostController) {
     val firebaseService = remember { FirebaseService() }
     var isLoading by remember { mutableStateOf(false) }
     val coroutine = rememberCoroutineScope()
+
     Box(Modifier.fillMaxSize()
         .padding(16.dp, 100.dp)) {
         Column(
@@ -56,6 +58,10 @@ fun RegisterScreen(navController: NavHostController) {
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.primary
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            if(isLoading){
+                LoadingWheel()
+            }
             Spacer(modifier = Modifier.height(16.dp))
 
             // Email Text Field

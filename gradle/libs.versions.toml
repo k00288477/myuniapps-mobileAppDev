@@ -13,12 +13,16 @@ firebaseBom = "33.1.1"
 firebaseCommonKtx = "21.0.0"
 firebaseAuthKtx = "23.1.0"
 firebaseDatabase = "21.0.0"
+mapsCompose = "6.2.1"
+mapsComposeUtils = "6.2.1"
+mapsComposeWidgets = "6.2.1"
 uiTextGoogleFonts = "1.7.5"
 foundationLayoutAndroid = "1.6.6"
 animationCoreAndroid = "1.6.6"
 navigationRuntimeKtx = "2.8.4"
 navigationCompose = "2.8.4"
 composeMaterial3 = "1.0.0-alpha29"
+foundationLayoutAndroidVersion = "1.7.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -49,6 +53,10 @@ androidx-animation-core-android = { group = "androidx.compose.animation", name =
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "composeMaterial3" }
+foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroidVersion" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
+maps-compose-utils = { module = "com.google.maps.android:maps-compose-utils", version.ref = "mapsComposeUtils" }
+maps-compose-widgets = { module = "com.google.maps.android:maps-compose-widgets", version.ref = "mapsComposeWidgets" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
