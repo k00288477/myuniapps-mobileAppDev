@@ -93,6 +93,21 @@ fun DrawerContent( navController: NavHostController, drawerState: DrawerState ){
                 fontWeight = FontWeight.SemiBold)
         }
 
+        // Settings item
+        TextButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { coroutineScope.launch { // button is clicked
+                drawerState.close() // close the drawer
+                navController.navigate("settings") // navigate to Profile screen
+            }
+            }) {
+            Text(
+                text = "Settings",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.inverseSurface,
+                fontWeight = FontWeight.SemiBold)
+        }
+
 
         Spacer(modifier = Modifier.weight(1f))
         TextButton(

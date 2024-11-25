@@ -91,6 +91,30 @@ fun BtnTertiary(text: String, modifier: Modifier = Modifier, onClick: ()-> Unit)
     }
 }
 
+@Composable
+fun BtnDanger(text: String, modifier: Modifier = Modifier, onClick: ()-> Unit){
+    Button(
+        onClick = onClick,
+        shape = RoundedCornerShape(15.dp),
+        colors = ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = MaterialTheme.colorScheme.errorContainer,
+            disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+            disabledContentColor = MaterialTheme.colorScheme.onSecondary
+        ),
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
+        modifier = modifier
+    ) {
+        Text(
+            text = text,
+            color = MaterialTheme.colorScheme.primary,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Normal,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
 
 
 
