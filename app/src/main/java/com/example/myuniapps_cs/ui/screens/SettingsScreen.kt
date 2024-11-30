@@ -134,11 +134,13 @@ fun SettingsScreen(navController: NavController){
                             val email = Firebase.auth.currentUser?.email
                             if (email != null) {
                                Firebase.auth.sendPasswordResetEmail(email)
+                                showConfirmationMessage = true
                             } else {
                                 navController.navigate("settings")
                             }
                         }
                     }
+
                 )
                 HorizontalDivider(
                     modifier = Modifier.padding(vertical = 8.dp), // Add vertical spacing around the divider
