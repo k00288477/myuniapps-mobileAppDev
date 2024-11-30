@@ -99,15 +99,15 @@ fun BtnDanger(text: String, modifier: Modifier = Modifier, onClick: ()-> Unit){
         colors = ButtonColors(
             containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.errorContainer,
-            disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+            disabledContainerColor = MaterialTheme.colorScheme.errorContainer,
             disabledContentColor = MaterialTheme.colorScheme.onSecondary
         ),
-        border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.errorContainer),
         modifier = modifier
     ) {
         Text(
             text = text,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.errorContainer,
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
             textAlign = TextAlign.Center

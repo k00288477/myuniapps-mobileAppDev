@@ -42,8 +42,8 @@ fun ProfileFavourites(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             BtnSecondary(
-                text = "View Favourites",
-                onClick = { navController to "clubs" },
+                text = "View Clubs",
+                onClick = { navController.navigate("clubs") },
                 modifier = Modifier.fillMaxWidth()
             )
         }

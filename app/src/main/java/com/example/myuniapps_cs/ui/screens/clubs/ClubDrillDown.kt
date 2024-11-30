@@ -86,29 +86,24 @@ fun ClubDrillDown(navController: NavController, clubId: String?) {
                 .padding(8.dp, 32.dp, 8.dp, 16.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = "Club Details",
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(8.dp, 6.dp)
-            )
+                Text(
+                    text = "Club Details",
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(8.dp, 6.dp)
+                )
 
-            if(club != null) {
-                if (isLoading) {
-                    // Display Loading wheel during load
-                    LoadingWheel()
-                } else {
-                    // Drill down details
-                    ClubDrillDownDetails(club!!)
-                }
-            } else {
-                Text("Error fetching club details...")
+                    if (club != null && !isLoading) {
+                        ClubDrillDownDetails(club!!)
+                    }
+                    else {
+                        // Display Loading wheel during load
+                        LoadingWheel()
+                    }
             }
-
-            }
-        }
 
     }
+}// End Composable
 
 @Composable
 fun ClubDrillDownDetails(club: Club) {

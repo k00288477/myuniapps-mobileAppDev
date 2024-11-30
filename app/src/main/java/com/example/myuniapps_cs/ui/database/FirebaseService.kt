@@ -59,6 +59,20 @@ class FirebaseService {
         }
     }
 
+    // delete account
+    suspend fun deleteUserAccount(userId: String?){
+        try {
+            auth.currentUser?.delete()
+            if (userId != null) {
+                usersRef.child(userId).removeValue().await()
+                Log.d("FirebaseService", "User deleted successfully")
+            }
+        } catch (e: Exception){
+            Log.d("FirebaseService", "Error Deleting user: $userId ")
+        }
+
+    }
+
     // get all clubs
     suspend fun getAllClubs(): List<Club>? {
         return try {

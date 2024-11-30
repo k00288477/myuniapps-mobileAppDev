@@ -83,13 +83,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     // Firebase Bom
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
-
+    // Google Maps
     implementation(libs.maps.compose)
-
-    // Optionally, you can include the Compose utils library for Clustering,
-    // Street View metadata checks, etc.
     implementation(libs.maps.compose.utils)
-
-    // Optionally, you can include the widgets library for ScaleBar, etc.
     implementation(libs.maps.compose.widgets)
 }

@@ -22,6 +22,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,16 +34,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.myuniapps_cs.ui.navigation.DrawerContent
 import com.example.myuniapps_cs.ui.navigation.NavigationGraph
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-
+private lateinit var auth: FirebaseAuth
 @Composable
 fun MyUniApp() {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
     val navController = rememberNavController()
-
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -91,8 +95,13 @@ fun MainContent(navController: NavHostController, paddingValues: PaddingValues){
 }
 // function to toggle the state of the drawer menu
 private fun toggleDrawer( drawerState: DrawerState, coroutineScope: CoroutineScope ){
+    val currentUser = auth.currentUser
+
     coroutineScope.launch {
-        if(drawerState.isClosed) drawerState.open() else drawerState.close();
+        // Prevent user from opening menu if not logged in
+        if(currentUser != null) {
+            if (drawerState.isClosed) drawerState.open() else drawerState.close();
+        }
     }
 }
 
